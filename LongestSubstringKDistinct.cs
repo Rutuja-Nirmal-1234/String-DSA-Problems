@@ -1,33 +1,35 @@
 // Problem: Longest Substring With At Most K Distinct Characters (Sliding Window)
 
 // Question:
-// Write a program to find the length of the longest substring that contains at most K distinct characters in a given string.
+// Write a program to find the length of the longest substring 
+// that contains at most K distinct characters.
 
 // Input:
-// - A string containing letters, digits, or symbols
-// - An integer K representing the maximum number of distinct characters allowed
+// - A string (e.g., "eceba")
+// - An integer K (maximum number of distinct characters allowed)
 
 // Output:
-// - Length of the longest substring with at most K distinct characters
+// - An integer representing the length of the longest valid substring
 
 // Example:
-// Input: s = "eceba", k = 2
-// Output: 3
-// Explanation: The longest substring with at most 2 distinct characters is "ece"
+// Input: "eceba", K = 2
+// Output: 3   ("ece")
 //
-// Input: s = "aa", k = 1
-// Output: 2
-// Explanation: The longest substring with at most 1 distinct character is "aa"
+// Input: "aa", K = 1
+// Output: 2   ("aa")
+//
+// Input: "abcadcacacaca", K = 3
+// Output: 11  ("cadcacacaca")
 
 // Notes:
-// - Use a sliding window approach with two pointers (start and end).
-// - Use a dictionary to track the frequency of characters in the current window.
-// - Expand the window by moving the end pointer.
-// - Shrink the window from start if distinct character count exceeds K.
+// - Use a sliding window with two pointers (start, end).
+// - Use a Dictionary to track character frequencies in the current window.
+// - If distinct characters exceed K, shrink the window from the left.
+// - Update maxLength whenever a larger valid window is found.
 
 // Complexity:
-// Time Complexity: O(n) (n = length of string)
-// Space Complexity: O(min(n, charset_size)) (dictionary stores character frequencies)
+// Time Complexity: O(n) (each character processed at most twice)
+// Space Complexity: O(k) (dictionary stores at most K characters)
 
 using System;
 using System.Collections.Generic;
@@ -62,12 +64,15 @@ public class LongestSubstringKDistinct
             else
                 charFrequency[c] = 1;
 
+            // If distinct characters exceed K → shrink from left
             while (charFrequency.Count > k)
             {
                 char startChar = s[start];
                 charFrequency[startChar]--;
+
                 if (charFrequency[startChar] == 0)
                     charFrequency.Remove(startChar);
+
                 start++;
             }
 
