@@ -1,4 +1,4 @@
-// Problem: Reverse a String
+// Problem: Reverse a String array
 
 // Description:
 // Write a function that reverses a string in-place.
