@@ -34,11 +34,11 @@ public class Solution
 
             for (int j = 1; j < strs.Length; j++)
             {
-                // 🔐 Check length before accessing char
+              
                 if (i >= strs[j].Length)
                     return prefix.Substring(0, i);
 
-                // 🔐 Compare character
+                
                 if (strs[j][i] != ch)
                     return prefix.Substring(0, i);
             }
