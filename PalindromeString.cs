@@ -18,29 +18,20 @@
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 
-using System;
-
-public class Solution
-{
-    public bool IsPalindrome(string s)
-    {
-        string str = "";
-
-        foreach (char c in s)
-        {
-            if (char.IsLetterOrDigit(c))
-            {
-                str += char.ToLower(c);
+public class Solution {
+    public bool IsPalindrome(string s) {
+        List<char> input = new List<char>();
+        foreach(char ch in s){
+            if(char.IsLetterOrDigit(ch)){
+                input.Add(char.ToLower(ch));
             }
         }
+        
+        int left =0;
+        int right = input.Count-1;
+        while(left<right){
 
-        int left = 0;
-        int right = str.Length - 1;
-
-        while (left < right)
-        {
-            if (str[left] != str[right])
-            {
+            if(input[left] != input[right]){
                 return false;
             }
             left++;
@@ -48,5 +39,8 @@ public class Solution
         }
 
         return true;
+        
+
+      
     }
 }
